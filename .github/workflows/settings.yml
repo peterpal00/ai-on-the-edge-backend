@@ -1,15 +1,1 @@
-name: Configure Repository Settings
-on:
-  push:
-    branches:
-      - develop
-jobs:
-  configure-settings:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Configure Repository Settings
-        uses: peter-evans/repository-settings@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          settings-file-path: .github/settings.yml
+
