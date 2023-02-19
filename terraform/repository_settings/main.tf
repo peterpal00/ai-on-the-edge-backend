@@ -64,7 +64,7 @@ resource "github_repository_label" "techdept" {
   description = "Changes that remove or significantly update old unused code and/or dependencies."
 }
 
-resource "github_repository_label" "CI/CD" {
+resource "github_repository_label" "CI_CD" {
   repository = var.repo_name
   name       = "CI/CD"
   color      = "#5319e7"
