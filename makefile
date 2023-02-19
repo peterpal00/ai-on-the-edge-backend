@@ -1,3 +1,6 @@
+tf_init:
+	terraform init
+
 tf_plan:
 	terraform plan -out=tfplan -detailed-exitcode
 
