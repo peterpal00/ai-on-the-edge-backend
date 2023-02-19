@@ -13,10 +13,10 @@ provider "github" {
 
 
 module "repository_settings" {
-  source = "./modules/repository_settings"
+  source = "./repository_settings"
 }
 
 
 module "branch_protection" {
-  source = "./modules/branch_protection"
+  source = "./branch_protection"
 }
