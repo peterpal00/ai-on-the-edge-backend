@@ -28,10 +28,10 @@ jobs:
       id: plan
       run: |
         cd terraform/
-        make tf_plan
+        make terraform plan -out=tfplan -detailed-exitcode
 
     - name: Apply Terraform Plan
       if: steps.plan.outputs.exit_code == 2
       run: |
         cd terraform/
-        make tf_appy
+        terraform apply tfplan
