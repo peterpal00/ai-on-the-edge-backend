@@ -20,13 +20,13 @@ jobs:
         terraform_version: 1.1.2
 
     - name: Initialize Terraform
-      run: terraform init
+      run:  |
+        cd .terraform/
+        terraform init
 
     - name: Plan Terraform
       id: plan
-      run: |
-        cd .terraform/
-        terraform plan -out=tfplan -detailed-exitcode
+      run: terraform plan -out=tfplan -detailed-exitcode
 
     - name: Apply Terraform Plan
       if: steps.plan.outputs.exit_code == 2
