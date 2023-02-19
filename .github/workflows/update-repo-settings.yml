@@ -1,4 +1,4 @@
-name: Apply Repo Settings
+name: Apply Terraform
 
 on:
   push:
@@ -26,6 +26,6 @@ jobs:
       id: plan
       run: terraform plan -out=tfplan -detailed-exitcode
 
-    - name: Apply Terraform
+    - name: Apply Terraform Plan
       if: steps.plan.outputs.exit_code == 2
       run: terraform apply tfplan
