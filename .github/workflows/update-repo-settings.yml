@@ -21,17 +21,17 @@ jobs:
 
     - name: Initialize Terraform
       run: |
-        cd .terraform/
+        cd terraform/
         terraform init
 
     - name: Plan Terraform
       id: plan
       run: |
-        cd .terraform/
+        cd terraform/
         make tf_plan
 
     - name: Apply Terraform Plan
       if: steps.plan.outputs.exit_code == 2
       run: |
-        cd .terraform/
+        cd terraform/
         make tf_appy
