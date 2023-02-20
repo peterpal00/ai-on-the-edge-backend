@@ -1,8 +1,11 @@
-tf_init:
-	terraform init
+ROOT_PATH = backend
+SERVICE_NAME = NOT_SET
+SERVICE_PATH = $(ROOT_PATH)/$(SERVICE_NAME)
 
-tf_plan:
-	terraform plan -out=tfplan -detailed-exitcode
+install_deps:
+	poetry install
 
-tf_apply:
-	terraform apply tfplan
+run_api:
+	cd $(SERVICE_PATH) && \
+	poetry run uvicorn $(ROOT_PATH).$(SERVICE_NAME).main:app --reload
+
