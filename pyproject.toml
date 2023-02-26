@@ -13,4 +13,29 @@ pydantic = "^1.10.5"
 
 [tool.poetry.group.data_service.dependencies]
 
+[tool.poetry.group.test.dependencies]
+black = "^22.10.0"
+flake8 = "^5.0.0"
+flake8-bugbear = "^22.10.17"
+flake8-return = "^1.2.0"
+flake8-simplify = "^0.19.3"
+flake8-eradicate = "^1.4.0"
+flake8-variables-names = "^0.0.5"
+isort = "^5.10.0"
+mypy = "<1.0.0"
 
+[tool.black]
+line-length = 120
+target-version = ['py311']
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+
+[tool.isort]
+line_length = 120
+profile = "black"
+known_first_party = ["backend"]
+no_lines_before = ["LOCALFOLDER"]
