@@ -1,6 +1,7 @@
-from pydantic import BaseModel, Field
-from typing import Optional
 from enum import Enum
+from typing import Optional
+
+from pydantic import BaseModel, Field
 
 
 class MeasurementType(Enum):
@@ -12,17 +13,15 @@ class MeasurementType(Enum):
 measurement_types: dict = {
     "water": MeasurementType.WATER,
     "gas": MeasurementType.GAS,
-    "electricity": MeasurementType.ELECTRICITY
+    "electricity": MeasurementType.ELECTRICITY,
 }
 
 
 class Measurement(BaseModel):
     value: str
     timestamp: str
-    type: str
-    raw_value: Optional[str] = Field(alias='raw')
-    previous_value: Optional[str] = Field(alias='pre')
+    type: str  # noqa: VNE003
+    raw_value: Optional[str] = Field(alias="raw")
+    previous_value: Optional[str] = Field(alias="pre")
     rate: Optional[str]
     error: Optional[str]
-
-
