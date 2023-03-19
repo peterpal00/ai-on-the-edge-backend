@@ -10,13 +10,6 @@ class MeasurementType(Enum):
     ELECTRICITY = 3
 
 
-measurement_types: dict = {
-    "water": MeasurementType.WATER,
-    "gas": MeasurementType.GAS,
-    "electricity": MeasurementType.ELECTRICITY,
-}
-
-
 class Measurement(BaseModel):
     value: str
     timestamp: str
