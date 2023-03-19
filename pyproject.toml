@@ -12,6 +12,7 @@ uvicorn = "^0.20.0"
 pydantic = "^1.10.5"
 
 [tool.poetry.group.data_service.dependencies]
+influxdb = "^5.3.1"
 
 [tool.poetry.group.test.dependencies]
 black = "^22.10.0"
@@ -33,6 +34,12 @@ plugins = "pydantic.mypy"
 disallow_incomplete_defs = true
 disallow_untyped_defs = true
 check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = [
+    "influxdb.*"
+]
+ignore_missing_imports = true
 
 [tool.isort]
 line_length = 120

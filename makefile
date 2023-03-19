@@ -3,7 +3,9 @@ SERVICE_NAME = NOT_SET
 SERVICE_PATH = $(ROOT_PATH)/$(SERVICE_NAME)
 
 install_deps:
-	poetry install
+	poetry install \
+	--with data_service \
+	--with test
 
 run_api:
 	cd $(SERVICE_PATH) && \
