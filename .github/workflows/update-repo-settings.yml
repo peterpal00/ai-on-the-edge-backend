@@ -1,3 +1,4 @@
+"""
 name: Apply Terraform
 
 on:
@@ -35,3 +36,4 @@ jobs:
       run: |
         cd terraform/
         terraform apply tfplan
+"""
