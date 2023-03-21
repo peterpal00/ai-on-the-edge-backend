@@ -5,6 +5,7 @@ SERVICE_PATH = $(ROOT_PATH)/$(SERVICE_NAME)
 install:
 	poetry install \
 	--with data_service \
+	--with user_service \
 	--with test
 
 run_api:
