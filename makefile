@@ -2,9 +2,10 @@ ROOT_PATH = backend
 SERVICE_NAME = NOT_SET
 SERVICE_PATH = $(ROOT_PATH)/$(SERVICE_NAME)
 
-install_deps:
+install:
 	poetry install \
 	--with data_service \
+	--with user_service \
 	--with test
 
 run_api:
