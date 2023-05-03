@@ -10,11 +10,13 @@ python = "^3.10"
 fastapi = "^0.92.0"
 uvicorn = "^0.20.0"
 pydantic = "^1.10.5"
+httpx = "^0.24.0"
 
 [tool.poetry.group.data_service.dependencies]
 influxdb = "^5.3.1"
 
 [tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
 black = "^22.10.0"
 flake8 = "^5.0.0"
 flake8-bugbear = "^22.10.17"
@@ -46,3 +48,6 @@ line_length = 120
 profile = "black"
 known_first_party = ["backend"]
 no_lines_before = ["LOCALFOLDER"]
+
+[tool.pytest.ini.options]
+console_output_style = "classic"
