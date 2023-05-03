@@ -18,7 +18,6 @@ FROM builder as prod
 
 ARG SERVICE_NAME
 
-
 COPY poetry.lock .
 COPY pyproject.toml .
 
