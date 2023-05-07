@@ -3,6 +3,6 @@ from backend.data_service.models.measurement import Measurement
 
 
 class ElectricityMeasurementProcessor(BaseMeasurementProcessor):
-    def process(self, new_measurement_point: Measurement):
+    def process(self, new_measurement_point: Measurement) -> None:
         self.measurement_storage["electricity_measurements"].append(new_measurement_point)
         print("Electricity data saved.")

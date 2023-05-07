@@ -1,4 +1,4 @@
-from typing import Dict, Type
+from typing import Dict, List, Type
 
 from backend.data_service.data_processors.base_measurement_processor import BaseMeasurementProcessor
 from backend.data_service.data_processors.electricity_meausrement_processor import ElectricityMeasurementProcessor
@@ -14,7 +14,7 @@ type_to_class_dict: Dict[MeasurementType, Type[BaseMeasurementProcessor]] = {
 
 
 class DataProcessorFactory:
-    def __init__(self, measurement_storage):
+    def __init__(self, measurement_storage: Dict[str, List]) -> None:
         self.measurement_storage = measurement_storage
 
     def get_processor(self, data_type: MeasurementType) -> BaseMeasurementProcessor:

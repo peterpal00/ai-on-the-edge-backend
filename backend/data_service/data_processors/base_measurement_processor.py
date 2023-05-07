@@ -9,5 +9,5 @@ class BaseMeasurementProcessor:
         self.measurement_storage = measurement_storage
 
     @abstractmethod
-    def process(self, new_measurement_point: Measurement):
+    def process(self, new_measurement_point: Measurement) -> None:
         pass
