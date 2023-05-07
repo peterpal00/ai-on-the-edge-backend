@@ -5,15 +5,15 @@ from pydantic import BaseModel, Field
 
 
 class MeasurementType(Enum):
-    WATER = 1
-    GAS = 2
-    ELECTRICITY = 3
+    WATER = "water"
+    GAS = "gas"
+    ELECTRICITY = "electricity"
 
 
 class Measurement(BaseModel):
     value: str
     timestamp: str
-    type: str  # noqa: VNE003
+    type: MeasurementType  # noqa: VNE003
     raw_value: Optional[str] = Field(alias="raw")
     previous_value: Optional[str] = Field(alias="pre")
     rate: Optional[str]

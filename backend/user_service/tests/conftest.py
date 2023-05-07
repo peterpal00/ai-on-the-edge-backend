@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.fixture
 def test_first_name():
     return "test_first_name"
