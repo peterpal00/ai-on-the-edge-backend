@@ -1,7 +1,7 @@
 from unittest.mock import Mock, patch
 
-from fastapi.testclient import TestClient
 from fastapi import status
+from fastapi.testclient import TestClient
 
 from backend.user_service.main import app
 from backend.user_service.models.user_registration_model import UserRegistrationModel
@@ -9,18 +9,18 @@ from backend.user_service.models.user_registration_model import UserRegistration
 test_client = TestClient(app)
 
 
-@patch.object(UserRegistrationModel, 'set_id')
-@patch.object(UserRegistrationModel, 'set_registration_code')
+@patch.object(UserRegistrationModel, "set_id")
+@patch.object(UserRegistrationModel, "set_registration_code")
 def test_hello(
-        mock_user_registration_model_set_registration_code: Mock,
-        mock_user_registration_model_set_id: Mock,
-        test_first_name: str,
-        test_last_name: str,
-        test_birth_date: str,
-        test_email_address: str,
-        test_timestamp: str,
-        test_uuid4_str: str,
-        test_registration_code: str
+    mock_user_registration_model_set_registration_code: Mock,
+    mock_user_registration_model_set_id: Mock,
+    test_first_name: str,
+    test_last_name: str,
+    test_birth_date: str,
+    test_email_address: str,
+    test_timestamp: str,
+    test_uuid4_str: str,
+    test_registration_code: str,
 ):
     json_body = {
         "first_name": test_first_name,
@@ -30,10 +30,7 @@ def test_hello(
         "timestamp": test_timestamp,
     }
 
-    expected_response = {
-        "user_id": test_uuid4_str,
-        "registration_code": test_registration_code
-    }
+    expected_response = {"user_id": test_uuid4_str, "registration_code": test_registration_code}
 
     mock_user_registration_model_set_id.return_value = test_uuid4_str
     mock_user_registration_model_set_registration_code.return_value = test_registration_code

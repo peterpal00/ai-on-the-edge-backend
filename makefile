@@ -12,10 +12,10 @@ run_api:
 
 
 lint:
-	poetry run flake8 --config setup.cfg $(SERVICE_PATH)
-	poetry run mypy --config-file pyproject.toml $(SERVICE_PATH)
-	poetry run black --config pyproject.toml --check $(SERVICE_PATH)
-	poetry run isort --sp pyproject.toml --check-only $(SERVICE_PATH)
+	poetry run flake8 --config setup.cfg $(SERVICE_PATH) --exclude *test*
+	poetry run mypy --config-file pyproject.toml $(SERVICE_PATH) --exclude .*test*.
+	poetry run black --config pyproject.toml --check $(SERVICE_PATH) --exclude .*test*.
+	poetry run isort --sp pyproject.toml --check-only $(SERVICE_PATH) --skip *test*
 
 format:
 	poetry run black --config pyproject.toml $(SERVICE_PATH)

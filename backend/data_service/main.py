@@ -1,24 +1,21 @@
-from typing import Any, Union
+from typing import Dict, List, Optional
 
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 
-from backend.data_service.models.hardware_status import HardwareStatus
+from backend.data_service.data_processors.data_processor_factory import DataProcessorFactory
 from backend.data_service.models.measurement import Measurement
 
+data_points: Dict[str, List] = dict(water_measurements=list(), gas_measurements=list(), electricity_measurements=list())
 
-def store_data(data: Union[Measurement, HardwareStatus]) -> Any:
-    print("Data incoming:")
-    print(data.json())
-
+measurement_processor_factory = DataProcessorFactory(measurement_storage=data_points)
 
 app = FastAPI()
 
 
-@app.post("/measurement/")
-def save_new_measurement_point(data: Measurement) -> Any:
-    store_data(data=data)
+@app.post("/data/", status_code=status.HTTP_201_CREATED)
+async def save_measurement_point(data_point: Measurement) -> Optional[Dict]:
 
+    processor = measurement_processor_factory.get_processor(data_type=data_point.type)
+    processor.process(data_point)
 
-@app.post("/hardware-status/")
-async def save_new_hardware_status_point(data: HardwareStatus) -> Any:
-    store_data(data=data)
+    return data_point.dict()

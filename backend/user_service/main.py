@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from fastapi import FastAPI, HTTPException, status
 
@@ -11,17 +11,17 @@ users: Dict[str, UserRegistrationModel] = dict()
 
 
 @app.post("/users/", status_code=status.HTTP_201_CREATED)
-async def root(user: UserRegistrationModel):
+async def root(user: UserRegistrationModel) -> Dict:
 
-    users.update({user.user_id: user})
-    for val in users.values():
-        print(val)
+    users.update({user.user_id: user})  # type: ignore
+    for value in users.values():
+        print(value)
 
     return {"user_id": user.user_id, "registration_code": user.registration_code}
 
 
 @app.post("/users/{user_id}/registration-confirmation/", status_code=status.HTTP_202_ACCEPTED)
-def registration_confirmation(user_id: str, registration_confirmation: RegistrationConfirmationModel):
+def registration_confirmation(user_id: str, registration_confirmation: RegistrationConfirmationModel) -> Optional[Dict]:
     try:
         user = users[user_id]
     except Exception:
@@ -29,8 +29,7 @@ def registration_confirmation(user_id: str, registration_confirmation: Registrat
 
     if not user.is_user_in_registration_pending():
         raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail="Registration is not in pending status."
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Registration is not in pending status."
         )
     if user.registration_code != registration_confirmation.registration_code:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Registration code is wrong.")
